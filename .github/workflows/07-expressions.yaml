@@ -26,7 +26,8 @@ jobs:
 
         - name: Print Event Name
           if: ${{ contains(fromJSON('["push", "pull_request"]'), github.event_name) }}
-          run: echo "Event name: ${{ github.event_name }}"
+          run: |
+            echo "Event name: ${{ github.event_name }}"
 
         - name: Greeting
           run: echo "Hello World" 
