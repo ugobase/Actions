@@ -1,0 +1,33 @@
+name: 07 - Using Expressions
+on:
+    push:
+
+    workflow_dispatch:
+      inputs:
+        debug:
+          required: true
+          type: boolean
+          default: false
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Print start-up data
+          if: ${{ inputs.debug }}
+          run: |
+            echo "Triggered by: ${{ github.event_name }}"
+            echo "Branch: ${{ github.ref }}"
+            echo "Commit SHA by: ${{ github.sha }}"
+            echo "Runner OS: ${{ runner.os }}"
+
+        - name: Print when triggered from main
+          if: ${{ inputs.debug && github.ref == 'refs/heads/main' }}
+          run: echo "Triggered from main branch"
+
+        - name: Print Event Name
+          if: ${{ contains(fromJSON('["push", "pull_request"]'), github.event_name) }}
+          run: echo "Event name: ${{ github.event_name }}"
+
+        - name: Greeting
+          run: echo "Hello World" 
+
