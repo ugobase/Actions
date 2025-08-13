@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: Print start-up data
-          if: ${{ inputs.debug }}
+          if: ${{ inputs.debug }} == 'false'
           run: |
             echo "Triggered by: ${{ github.event_name }}"
             echo "Branch: ${{ github.ref }}"
@@ -25,7 +25,7 @@ jobs:
           run: echo "Triggered from main branch"
 
         - name: Print Event Name
-          if: ${{ contains(fromJSON('["push", "pull_request"]'), github.event_name) }}
+          if: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) }}
           run: |
             echo "Event name: ${{ github.event_name }}"
 
