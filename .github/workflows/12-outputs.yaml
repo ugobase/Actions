@@ -29,7 +29,7 @@ jobs:
             echo "output3=value3" >> "$GITHUB_OUTPUT"
             cat "$GITHUB_OUTPUT"
             echo "mistake=true" > "$GITHUB_OUTPUT"
-            cat "GITHUB_OUTPUT"
+            cat "$GITHUB_OUTPUT"
     deploy:
         runs-on: ubuntu-latest
         needs: build
